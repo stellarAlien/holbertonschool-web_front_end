@@ -1,0 +1,7 @@
+/* scsss */
+/* loop on headers assigning size acordingly */
+@for $i from 1 through 5 {
+    h#{$i} {
+        font-size: #{$i}px;
+    }
+}
