@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+    <head>
+        <script
+        src="https://code.jquery.com/jquery-3.6.1.slim.min.js"
+        integrity="sha256-w8CvhFs7iHNVUtnSP0YKEg00p9Ih13rlL9zGqvLdePA="
+        crossorigin="anonymous"></script>
+        <script  type="application/javascript">
+            $.createSearchForm = function(){
+                $("body").append($("<input type='text'>"), $("<input type='submit'"));
+                $("submit").click(queryWikipedia($("input:nth-of-type(1)".val())));
+                $("body").append("<ul>")
+            }  
+            $.addNewArticle = function(id, title, snippet){
+                let $li = $("<li></li>").append("<p>").append("<p>");
+                $("p:nth-of-type(1)").append($("<span>").text(id + ' - ')).append($("<b>").text(title));
+                $("p:nth-of-type(2)").text(snippet);
+                $("ul").append($li);
+                
+            }
+            function queryWikipedia(search){
+                $url = 'https://www.mediawiki.org/wiki/API:Search';
+                let params = {
+                    action : "query",
+                    format : "Json",
+                    srsearch: search,
+                };
+                $url = $url + "?origin=*";
+				Object.keys(params).forEach(function (key) { $url += "&" + key + "=" + params[key]; });
+				console.log($url);
+				$.ajax({
+					url: $url,
+					type: "get",
+					success: function (response) {
+						$("ul").first().empty();
+						let data = response.query.search;
+						for (let i = 0; i < response.query.search.length; i++) {
+							$.addNewArticle(data[i].pageid, data[i].title, data[i].snippet);
+						}
+					},
+                    
+				});
+                $.createSearchForm();
+            }
+        </script>
+        <meta charset="utf-8" />
+        <title>Task 7</title>
+
+    </head>
+
+    <body>
+
+    </body>
+
+</html>

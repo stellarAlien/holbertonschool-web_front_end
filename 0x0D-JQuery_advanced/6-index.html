@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+
+    <meta charset="utf-8" />
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.slim.min.js" integrity="sha256-u7e5khyithlIdTpu22PHhENmPcRdFiHRjhAuHcs05RI=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <script type="application/javascript">
+        function createFamilyTree() {
+            $("body").append("<table>");
+            $("table").append("<thead>");
+            $("thead").append($("<tr>").append($("<th>").text("Firstname")).append($("<th>").text("Lastname"))
+            )
+            $("table").append("<tbody>");
+        }
+
+        function addNewMember(firstname, lastname, position) {
+            if (position == "before") {
+            $("tbody").prepend($("<tr>")
+                .append($("<td>").text(firstname))
+                .append($("<td>").text(lastname))
+                .append($("<td>").text("(x)"))
+            )
+                else{
+                    $("tbody").append($("<tr>")
+                        .append($("<td>").text(firstname))
+                        .append($("<td>").text(lastname))
+                        .append($("<td>").text("(x)"))
+                }
+            $("tbody td:last-child").click(function() {
+                $(this).closest("tr").remove();
+            })
+            $("tbody td:last-child").css("background-color", "orange");
+        }
+        
+        function createForm() {
+            $("table").before('<input type="text"> <input type="text"> <select><option value="after" id="after">After</option><option value="Before" id="before">Before</option></select><input type="submit">');
+            $("input[type='submit']").click(function() {
+                addNewMember($("input:nth-of-type(1)").val(), $("input:nth-of-type(2)").val(), $("").val());
+            });
+        }
+        createFamilyTree();
+        createForm();
+    </script>
+    <title>Task 6</title>
+</body>
+
+</html>
