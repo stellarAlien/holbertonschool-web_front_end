@@ -1,4 +1,4 @@
-let globalVariable = 'welcome';
+let globalVariable = 'Welcome ';
 function outer(){
     alert(globalVariable);
 

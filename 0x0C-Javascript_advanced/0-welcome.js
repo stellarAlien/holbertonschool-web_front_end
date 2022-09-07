@@ -1,7 +1,7 @@
 function welcome(firstName, lastName){
-        let fullname = firstName + ' ' + lastName;
-        function displayFullName() {
-            alert('welcome' +  fullname + '!')
-        }
-        displayFullName
-}
+    let fullname = firstName + ' ' + lastName;
+    function displayFullName() {
+        console.log('welcome ' +  fullname + '!')
+    }
+    displayFullName();
+} welcome();

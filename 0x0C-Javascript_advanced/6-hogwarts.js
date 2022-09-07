@@ -1,37 +1,35 @@
-class studentHogwarts(){
-    let privateScore = 0;
-    let name = null;
-
-    constructor(name){
-        this.name = name;
-    }
-    #changeScoreBy(points){
-        privateScore += points;
-    }
-    rewardStudent(){
-        changeScoreBy(1);
-    }
-    penalizeStudent(){
-        changeScoreBy(-1);
-    }
-    getScore(){
-        return this.name + ':' + this.score;
-    }
-
+class studentHogwarts {
+	privateScore = 0;
+	name = null;
+	constructor(name) {
+		this.name = name;
+	}
+	changeScoreBy = function (points) {
+		this.privateScore = points + this.privateScore;
+	}
+	setName = function (newName) {
+		this.name = newName;
+	};
+	rewardStudent = function () {
+		this.changeScoreBy(1);
+	};
+	penalizeStudent = function () {
+		this.changeScoreBy(-1);
+	};
+	getScore = function () {
+		return this.name + ': ' + this.privateScore;
+	};
 }
 
 harry = new studentHogwarts('Harry');
-
-for(let i = 0; i < 4; i++)
-{
-    harry.rewardStudent();
+for (let i = 0; i < 4; i++) {
+	harry.rewardStudent();
 }
-
 console.log(harry.getScore());
 
-Draco = new studentHogwarts('Draco');
-Draco.rewardStudent();
-for(let i = 0; i < 4; i++){
-    Draco.penalizeStudent();
+draco = new studentHogwarts('Draco');
+draco.rewardStudent();
+for (let i = 0; i < 3; i++) {
+	draco.penalizeStudent();
 }
-console.log(Draco.getScore());
+console.log(draco.getScore());
