@@ -6,6 +6,7 @@ function countPrimeNumbers(){
        }
     }
 }
+let measure_1 = performance.now();
 countPrimeNumbers();
-let measure = performance.now()
+let measure = performance.now();
 console.log('Execution time of printing countPrimeNumbers was ' + measure + ' milliseconds');
