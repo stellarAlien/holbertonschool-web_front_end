@@ -6,7 +6,7 @@ function countPrimeNumbers(){
        }
     }
 }
-
+countPrimeNumbers();
 let measure_0 = performance.now().toFixed(6);
 for(let i = 0; i < 100; i++){
     countPrimeNumbers();
