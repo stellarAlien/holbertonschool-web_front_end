@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+     <script>
+            setCookies = function(){
+               let firstname = getElementById('firstname').value;
+               let email = getElementById('email').value;
+               document.cookie= `firstname=${firstname.value}`;
+               document.cookie = `email=${email.value}`;
+               let date = new  Date();
+               date.setTime(date.getTime() + 864000 * 10);
+               document.cookie = 'cookie=ok;expires=' + date.toUTCString()+';';
+            };
+            showCookies = function(){
+                let p = document.createElement("p");
+                p.innerHTML = document.cookie;
+                document.body.append(p);
+            };
+            getCookie = function(name){
+
+            }
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div>
+            <input type="text" id="firstname">
+            <input type="text" id="email">
+            <button onclick="setCookies()">Log me in</button>
+            <button onclick="showCookies()">Show the cookies</button>
+
+        </div>  
+        <script src="" async defer></script>
+    </body>
+</html>

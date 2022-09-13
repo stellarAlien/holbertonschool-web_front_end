@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/3.0.1/js.cookie.min.js"></script>
+     <script>
+      function setCookiesAndShowWelcomeMessage() {
+        const firstname = document.getElementById("firstname").value;
+        const email = document.getElementById("email").value;
+          Cookies.set("firstname", firstname, { expires: 10 });
+          Cookies.set("email", email, { expires: 10 });
+        showWelcomeMessageOrForm();
+      } 
+
+            showCookies = function(){
+                let p = document.createElement("p");
+                p.innerHTML = `Email: ${getCookie("email")} - Firstname: ${getCookie("firstname")}`;
+                document.body.append(p);
+            };
+            showForm = function(){
+                let wlcm = body.getElementById('welcome');
+                let form = document.getElementById("form");
+                wlcm.remove();
+                form.style.display = "block";
+
+            };
+            HideForm = funciton(){
+                let form = document.querySelector("form");
+                form.style.display = "none";
+              };
+              function deleteCookiesAndShowForm() {
+                Cookies.remove("firstname");
+                Cookies.remove("email");
+                showForm();
+              };
+              function showWelcomeMessageOrForm() {
+                let firstname = getCookie('firstname');
+                if (firstname == "") {
+                  showForm();
+                } else {
+                  let wrap = document.createElement('div');
+                  wrap.setAttribute("id", "welcome");
+                  let html = `<h1>Welcome ${firstname.split('=')[1]}<a style="font-weight: 400; font-style: italic
+                    margin-left: 10px;" onclick="deleteCookiesAndShowForm()">(logout)</a></h1>`;
+                    wrap.innerHTML = html;
+                    hideForm();
+                    document.body.append(wrap);
+                  }
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        <div>
+            <input type="text" id="firstname">
+            <input type="text" id="email">
+            <button onclick="setCookies()">Log me in</button>
+            <button onclick="showCookies()">Show the cookies</button>
+
+        </div>
+        <div>
+            <h2></h2>
+            <input type="text"></input>
+            <input type="text"></input>
+            <button></button>
+        </div>
+        <script src="" async defer></script>
+    </body>
+</html>

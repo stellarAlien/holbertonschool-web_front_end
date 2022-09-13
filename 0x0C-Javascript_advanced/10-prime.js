@@ -13,4 +13,4 @@ for(let i = 0; i < 100; i++){
 }
 
 let measure_1 = performance.now().toFixed(6);
-console.log('Execution time of calculating prime numbers 100 times was ' + (measure_0 - measure_1).toFixed(6) + ' milliseconds');
+console.log('Execution time of calculating prime numbers 100 times was ' + (measure_1 - measure_0).toFixed(6) + ' milliseconds');

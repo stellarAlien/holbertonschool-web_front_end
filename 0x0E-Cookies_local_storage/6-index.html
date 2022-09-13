@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="">
+        <script>
+            availableItems =  [Shampoo, Soap, Sponge, Water];
+
+            const isLocalStorageEnabled = () => {
+                try {
+                  const key = `__storage__test`;
+                  window.localStorage.setItem(key, null);
+                  window.localStorage.removeItem(key);
+                  return true;
+                } catch (e) {
+                  return false;
+                }
+              };
+              
+        function createStore() {
+            const $ul = document.createElement("ul");
+            const $body = document.getElementsByTagName("body")[0];
+
+        for (let i of availableItems) {
+          let $li = document.createElement("li");
+          $li.innerHTML = i;
+          $li.addEventListener("click", function () {
+            addItemToCart(i);
+          });
+          $ul.append($li);
+        }
+        $body.append($ul);
+      }
+              $(document).ready(function() {
+                isLocalStorageEnabled();
+              };
+              function createStore() {
+                const $ul = document.createElement("ul");
+                const $body = document.getElementsByTagName("body")[0];
+        
+                for (let i of availableItems) {
+                  let $li = document.createElement("li");
+                  $li.innerHTML = i;
+                  $li.addEventListener("click", function () {
+                    addItemToCart(i);
+                  });
+                  $ul.append($li);
+                }
+                $body.append($ul);
+              }
+              function displayCart() {
+                if (localStorage.length) {
+                  const $p = document.createElement("p");
+                  const $body = document.getElementsByTagName("body")[0];
+                  $p.innerHTML = `You previously had ${localStorage.length} items in your cart`;
+                  $body.append($p);
+                }
+              }
+        
+              if (typeof Storage !== "undefined") {
+                createStore();
+                displayCart();
+              } else {
+                alert(
+                  "Sorry, your browser does not support Web storage. Try again with a better one"
+                );
+              }
+        </script>
+    </head>
+    <body>
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+        
+        <script src="" async defer></script>
+    </body>
+</html>
