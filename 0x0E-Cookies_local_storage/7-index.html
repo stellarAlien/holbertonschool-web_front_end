@@ -15,10 +15,34 @@
             availableItems =  [Shampoo, Soap, Sponge, Water];
 
             function addItemToCart(item) {
-              sessionStorage.setItem(item, true);
+              let cart = getCartFromStorage();
+              cart[item] = (cart[item] ? cart[item] + 1: 1);
+              session_cart = JSON.stringify(cart);     
+              storageSession.setItem('cart', session_cart);
+              displayCart();
             }
 
-            const isLocalStorageEnabled = () => {
+
+
+            function clearCart() {
+              sessionStorage.clear();
+              displayCart();
+             }
+
+             function removeItemfromCart(item) {
+              let cart = getCartFromStorage();
+              if (cart[item])
+               delete cart[item];
+              sessionStorage.setItem('cart', JSON.stringify(cart));
+              displayCart();
+             }
+
+
+
+            function getCartFromStorage() {
+              return (sessionStorage) ? (JSON.parse(sessionStorage.cart)) : {};
+            }
+            const isLocalStorageEnabled =  () => {
                 try {
                   const key = `__storage__test`;
                   window.localStorage.setItem(key, null);
@@ -26,7 +50,48 @@
                   return true;
                 } catch (e) {
                   return false;
-             
+                }
+              };
+              function updateCart() {
+                let divTag = document.querySelector('div');
+                let cart = getCartFromStorage();
+                let list;
+    
+                if (!document.querySelector('div ul')) {
+                    list = document.createElement('UL');
+                }
+                else {
+                    list = document.querySelector('div ul');
+                }
+    
+                if (Object.keys(cart).lenght == 0) {
+                    let list2 = document.createElement('LI');
+                    list2.appendChild(document.createTextNode('Your cart is empty'));
+                    list.appendChild(list2);
+                }
+                else {
+                    let pg = document.createElement('span');
+                    pg.innerHTML = `<span onclick="clearCart()">Clear my cart</span>`;
+                    list2.appendChild(pg);
+                    list.appendChild(list2);
+    
+                    for (const [key, value] of Object.entries(cart)) {
+                        let list2 = document.createElement('LI');
+                        let pg = document.createElement('P');
+                        pg.onclick = function () {
+                            removeItemfromCart(key);
+                        }
+                        pg.appendChild(document.createTextNode('(remove)'));
+                        list2.append(`${key} X ${value}`);
+                        list2.appendChild(pg);
+                        list.appendChild(list2);
+                    }
+                }
+                if (!document.getElementsByTagName('UL')[1]) {
+                    divTag.appendChild(list);
+                }
+            }
+              
               
         function createStore() {
             const $ul = document.createElement("ul");
@@ -42,7 +107,7 @@
         }
         $body.append($ul);
       }
-                 {
+              $(document).ready(function() {
                 isLocalStorageEnabled();
               };
               function createStore() {
